@@ -1,6 +1,9 @@
-# ARC_LLMs : 
+# ARC_LLMs : Keeping track of LLM progress on ARC
  
  *Head over to [alxndrtl.github.io/ARC](https://alxndrtl.github.io/ARC/) if you want to visualize the ARC tasks solved (or not) by LLMs !*
+ 
+![example_task](example_task.png)
+
  
  This repo contains the code and results for the evaluation of some famous LLMs on the [Abstraction and Reasoning Corpus](https://github.com/fchollet/ARC).
  
