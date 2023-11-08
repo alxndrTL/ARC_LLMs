@@ -56,44 +56,7 @@ The mean length of the tasks which the models were evaluated on is <b>2242</b>. 
 
 ## Why it matters ?
 
-The most impressive fact about these results is, I think, the following : none of these models were trained to complete such tasks, they are just language models. Yet, they all developed the ability is solve a good part of these tasks. As if, learning to modeling language makes you inevitably, good at the ARC tasks.
-And I think that this how the ARC tasks should be used : to purely evaluate a particular model, to "measure it". But a model shouldn't be trained on it.
-
-
-Of course, the results we see here are made possible by the famous in-context learning ability of LLMs. But here, we see clearly that this ability is general.
-Given 
-
-```
-mouse -> souris
-dog -> chien
-cat ->
-```
-
-predicting `chat` is an example of context-learning, but one can assume that tasks similar to these were often seen during training. On the contrary, tasks like ARC are relatively rare on the Internet, so it seems so that the results obtained here really show an ability learnt by the LLM. I don't know if this is clear enough.
-
-In the end, this evaluation is a very good and precise way to measure the in-context learning ability of a particular LLM. Decorralted with any prior knowledge, and with no suspicion that a similar task was seen during training.
-
-During the whole evaluation process, I was very attentive to the possible gap between RLHF'ed models and the others. The famous alignement tax, which makes aligned models weaker at ICL.
-We clearly show it here, in particular between text-davinci-003 and gpt-3.5-turbo. This jump is confirmed with the llamas models.  If gpt-4, being RLHF'ed, obtains 21% of success rate, we could easily imagine that the base model reaches 25% or more success rate. Or maybe OpenAI found a way to get rid of this alignment tax ?
-what is surprising is that gpt-3.5-turbo and gpt-3.5-turbo-instruct have the same performance...
-
-Of course, 21% (for gpt-4) isn't 100%. But seeing the fast pace at which things go by these days, and seeing the jump from the 3.5 models to the 4 model, the future looks promising. François Chollet talked about ARC 2.0 coming in the near future, that will also be interesting!
-
-One final note : I think that this benchmark is very interesting for the fine-tuning of LLMs. We see that turning an LLM into a chatbot with RLHF makes the success rate goes down by a few points. Inversly, can't we fine-tune an LLM in an other way, and have it perform better on ARC ? Of course, the final goal isn't to have a model good at ARC. As I said, training on the ARC tasks is I believe irrelevant. But a chatbot is just one possiblity among many other when one chooses what to do with a base LLM. See [Grounding Large Language Models in Interactive Environments with Online Reinforcement Learning](https://arxiv.org/abs/2302.02662), made by fellows I met in the Flowers team at Inria Bordeaux.
-
-## "But it just learned the tasks during training" 
-
-Of course, it has the seen, at least once, the tasks and their completion during its training. So all the results must be thrown away ?
-I really don't think so.
-
-As pointed out in the [Large Language Models as General Pattern Machines](https://arxiv.org/abs/2307.04721) paper, replacing the numbers with random tokens doesn't make the performance go to 0, at all.
-In their paper, they reported that using a random "alphabet" makes the success rate from 85/800 to 44/800, with text-davinci-003.
-With gpt-4, I only saw performance go from 21% to 17%, with the following alphabet : ['al', 'hello', 'rl', 'rf', 'was', 'once', 'hi', 'word', 'ape', 'ml'].
-
-With gpt-3.5-turbo-instruct, I used different tokens and transposed all the tasks, and the success rate decreased of 1% only (for the 3 cases : transpose, modified alphabet, transpose and modified alphabet). Tokens were : ['G', 'D', 'E', 'B', 'A', 'C', 'F', 'H', 'I', 'J']
-
-"But it has learned the mappings between the tokens". Interestingly, the tasks on which it succeeced in the normal and transposed case aren't the same. They are similar, as they are composed of the most easy tasks from the subset of tasks the models were evaluated from, but with a some notable differences. (tasks no. succeded in the normal case : 6, 19, 33, 34, 41, 54, 59, 72, 79, 85, and in the transpose case : 6, 14, 19, 31, 41, 58, 59, 72, 85).
-There are tasks that the model can't solve in the normal case (seen during training) but can solve in the transposed case ! I think that this really makes the hypothesis "it has learned the tasks" not probable.
+I think that this benchmark is very interesting for the fine-tuning of LLMs. We see that turning an LLM into a chatbot with RLHF makes the success rate goes down by a few points. Inversly, can't we fine-tune an LLM in an other way, and have it perform better on ARC ? Of course, the final goal isn't to have a model good at ARC. As I said, training on the ARC tasks is I believe irrelevant. But a chatbot is just one possiblity among many other when one chooses what to do with a base LLM. See [Grounding Large Language Models in Interactive Environments with Online Reinforcement Learning](https://arxiv.org/abs/2302.02662) for an example of such fine-tuning.
 
 ## To-Do
 Focus the test on smaller models and see the impact of different training/fine-tuning choices.
