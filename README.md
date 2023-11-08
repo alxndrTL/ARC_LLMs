@@ -20,6 +20,7 @@
  | model                  | result |
 |------------------------|--------|
 | gpt-4                  | 21%    |
+| gpt-4-turbo            | 18%    |
 | text-davinci-003       | 14%    |
 | gpt-3.5-turbo-instruct | 10.5%  |
 | gpt-3.5-turbo (4k)         | 11%  |
@@ -34,7 +35,7 @@ Note : these are pass@1 results. The ARC paper suggests to leave 3 tries to the 
 All the models were evaluated on the same subset composed of 100 tasks choosen randomly (from the 400 training tasks), except for :
 - text-davinci-002, evaluated on 200 of these 400 training tasks (choosen randomly).
 - text-davinci-003 and gpt-3.5-turbo-instruct, evaluated on the whole 400 training tasks.
-Default temperature was used (=1), except for gpt-3.5-turbo-instruct and gpt-3.5-turbo, where a temperature of 0 was used.
+Default temperature was used (=1), except for gpt-3.5-turbo-instruct, gpt-3.5-turbo and gpt-4-turbo, where a temperature of 0 was used.
 
 Note : some tasks were too long to fit in the context of some models (namely : text-davinci-003/2, and the llamas), but the percentage shown here doesn't take it into account (basically, a task is considered failed if its too big to fit in the context). It doesn't really matter, as most task that are long are failed by these models (more about it below).
 
