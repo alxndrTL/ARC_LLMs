@@ -10,6 +10,8 @@
  In the `responses` folder, there is one folder per model, with the completions of all the tasks it was evaluated on (as long as it answered with a valid response - ie one that can be made into a numpy array). The file `results.txt` shows on which specific tasks the different models succeeded. The code used to get the results is also available.
  
  The present document shows the results, then elaborates on why it matters and why this is interesting for present and future research, and finally, touch the point that while the ARC tasks were seen during training, there is little evidence, following multiple experiment, that the model just learned the tasks.
+
+ The code used to get the results is also provided as a notebook. Note that it is compatible only with the 0.27 version of the python openai library. Please see the OpenAI documentation if you want to work with newer versions (very little changes).
  
  ## Results
  
