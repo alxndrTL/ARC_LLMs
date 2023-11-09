@@ -58,6 +58,22 @@ The mean length of the tasks which the models were evaluated on is <b>2242</b>. 
 
 I think that this benchmark is very interesting for the fine-tuning of LLMs. We see that turning an LLM into a chatbot with RLHF makes the success rate goes down by a few points. Inversly, can't we fine-tune an LLM in an other way, and have it perform better on ARC ? Of course, the final goal isn't to have a model good at ARC. As I said, training on the ARC tasks is I believe irrelevant. But a chatbot is just one possiblity among many other when one chooses what to do with a base LLM. See [Grounding Large Language Models in Interactive Environments with Online Reinforcement Learning](https://arxiv.org/abs/2302.02662) for an example of such fine-tuning.
 
+## The model just learned the task ?
+
+One reasonable claim to make about these results is that the different models simply learned the tasks (which are present on the Internet). The evidence supporting this claim are the results of these LLMs on the private ARC tasks that only @fchollet have access to.
+While we don't have any results nor studies, @fchollet implied that all the LLMs achieved <5% success rate on these private tasks.
+
+However, there are results which are hard to explain if we accept this claim : by replacing the tokens of the tasks by random ones, and transposing the grids, the success rates are nearly not affected.
+Every ARC tasks are encoded with numbers, each number being attributed to one color : blue=0, red=1, etc...
+The results showed aboved were obtained by simply giving the LLMs these tasks with these classic tokens, so a task looks like : 0,0,0,1,8,0\n0,1,0,9,0,0,0 ....
+What I tried to do is changing the tokens to which colors are mapped. I tried using random tokens (as in [Large Language Models as General Pattern Machines](https://arxiv.org/abs/2307.04721)). We have : blue="am", red="sure", etc...
+Additionnaly, I transposed the grids.
+And the success rates are only affected by 2 or 3%.
+
+If the claim that LLMs just learned the task is true, then we have shown that they have learnt the tasks in a very subtle way : not by just remembering the order of some determined tokens.
+If this is true, this work shows a special kind of "learning power" of LLMs.
+
+
 ## To-Do
 Focus the test on smaller models and see the impact of different training/fine-tuning choices.
 For example, compare llama-7b with its code variants. Try phi-1.5 (first results aren't good, about 1%).
